@@ -1,0 +1,4 @@
+- hosts: forgejo
+  become: true
+  roles:
+    - install-forgejo

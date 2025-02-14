@@ -1,0 +1,8 @@
+---
+forgejo_path: '/opt/forgejo'
+forgejo_user: 'forgejo'
+forgejo_group: 'forgejo'
+forgejo_port_http: '3000'
+forgejo_port_ssh: '222'
+forgejo_path_data: '/path/to/my/forgejo/data/folder'
+forgejo_rsync_target: 'backup_user@rsync_server::backup_target'

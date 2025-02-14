@@ -1,0 +1,21 @@
+networks:
+  forgejo:
+    external: false
+
+services:
+  server:
+    image: codeberg.org/forgejo/forgejo:10
+    container_name: forgejo
+    restart: unless-stopped
+    networks:
+      - forgejo
+    ports:
+      - '{{ forgejo_port_http }}:3000'
+      - '{{ forgejo_port_ssh }}:22'
+    environment:
+      - USER_UID={{ forgejo_user_id }}
+      - USER_GID={{ forgejo_group_id }}
+    volumes:
+      - {{ forgejo_path_data }}:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro

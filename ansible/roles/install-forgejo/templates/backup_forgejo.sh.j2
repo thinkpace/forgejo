@@ -1,0 +1,21 @@
+#!/bin/sh
+
+backup_date=$(date +'%Y%m%d')
+backup_path={{ forgejo_path_data }}
+backup_name='forgejo_backup'
+rsync_target={{ forgejo_rsync_target }}
+
+echo "Backup date: $backup_date"
+echo "Backup path: $backup_path"
+echo "Backup name: $backup_name"
+echo "rsync Target: $rsync_target"
+
+# Create backup archive (ensure that Forgejo is not in use)
+docker exec -it --user git forgejo bash -c 'cd /data && forgejo dump --file backup.zip'
+mv $backup_path/backup.zip $backup_path/$backup_name-$backup_date.zip
+
+# rsync to NAS
+rsync -av --password-file={{ forgejo_path }}/rsync.pwd $backup_path/$backup_name-$backup_date.zip $rsync_target
+
+# Remove backup file
+rm $backup_path/$backup_name-$backup_date.zip
