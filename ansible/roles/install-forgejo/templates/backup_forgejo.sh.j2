@@ -11,7 +11,7 @@ echo "Backup name: $backup_name"
 echo "rsync Target: $rsync_target"
 
 # Create backup archive (ensure that Forgejo is not in use)
-docker exec -it --user git forgejo bash -c 'cd /data && forgejo dump --file backup.zip'
+docker exec --user git forgejo bash -c 'cd /data && forgejo dump --file backup.zip'
 mv $backup_path/backup.zip $backup_path/$backup_name-$backup_date.zip
 
 # rsync to NAS
