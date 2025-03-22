@@ -48,6 +48,10 @@ in setup directory.
 
 Ansible role is creating a cronjob which updates base images every night.
 
+# Health Check
+
+As highlighted in [Forgejo documentation](https://forgejo.org/docs/latest/admin/upgrade/#verify-forgejo-works), there is a way to verify Forgejo is working. This command is part of a [wrapper script](/ansible/roles/install-forgejo/templates/healthcheck_forgejo.sh.j2) which needs to be run as user with priviliged Docker access.
+
 # Backup
 
 The role creates a cron job which executes a [backup script](/ansible/roles/install-forgejo/templates/backup_forgejo.sh.j2) on a daily basis. To copy backup data to a backup server, rsync is used. To enable backup, please ensure there is a `rsync.pwd` in your installation path which contains rsync password.

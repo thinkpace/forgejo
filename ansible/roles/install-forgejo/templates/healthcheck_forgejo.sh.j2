@@ -1,0 +1,3 @@
+#!/bin/sh
+
+docker exec -it --user git forgejo bash -c 'forgejo doctor check --all --log-file /tmp/doctor.log'

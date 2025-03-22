@@ -41,3 +41,10 @@
     hour: 1
     minute: 0
     job: '{{ forgejo_path }}/backup_forgejo.sh'
+- name: Copy healthcheck_forgejo.sh
+  ansible.builtin.template:
+    src: healthcheck_forgejo.sh.j2
+    dest: '{{ forgejo_path }}/healthcheck_forgejo.sh'
+    owner: root
+    group: root
+    mode: 0775
